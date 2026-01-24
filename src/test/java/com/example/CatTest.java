@@ -28,12 +28,22 @@ public class CatTest {
     }
 
     @Test
-    public void testGetFood() throws Exception {
+    public void testGetFoodSize() throws Exception {
         when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> food = cat.getFood();
-        System.out.println("Тестируем что еда содержит следующие комплоненты: " + food );
+        System.out.println("Тестируем что еда содержит следующие комплоненты: " + food);
         assertEquals(3, food.size());
+    }
+    @Test
+    public void testGetFoodList() throws Exception {
+        when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        List<String> food = cat.getFood();
         assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
+    }
+    @Test
+    public void testGetFoodEatMeat() throws Exception {
+        when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        List<String> food = cat.getFood();
         verify(felineMock).eatMeat();
     }
 }
