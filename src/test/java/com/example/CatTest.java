@@ -33,9 +33,7 @@ public class CatTest {
         List<String> food = cat.getFood();
         System.out.println("Тестируем что еда содержит следующие комплоненты: " + food );
         assertEquals(3, food.size());
-        assertTrue(food.contains("Животные"));
-        assertTrue(food.contains("Птицы"));
-        assertTrue(food.contains("Рыба"));
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
         verify(felineMock).eatMeat();
     }
 }

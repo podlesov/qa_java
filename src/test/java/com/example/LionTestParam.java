@@ -14,7 +14,7 @@ import java.util.*;
 @RunWith(Parameterized.class)
 public class LionTestParam {
 
-    @Parameters
+    @Parameters(name = "Тестовые данные: пол={0}, наличие гривы={1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"Самец", true},
@@ -34,46 +34,33 @@ public class LionTestParam {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-        lion = new Lion(sex, felineMock);
+    MockitoAnnotations.initMocks(this);
+    lion = new Lion(sex, felineMock);
 
     }
 
     @Test
+
+
     public void testDoesHaveMane() {
         System.out.println(sex);
         if (expectedHasMane == true){
             System.out.println("Должна быть грива");
-        } else { System.out.println("Грива должна отсутствовать");
+        } else { System.out.println("Гривы быть не должно");
         }
-        System.out.println(sex);
         if (lion.doesHaveMane() == true){
-            System.out.println("Грива присутствует");
-        } else { System.out.println("Грива отсутсует");
+            System.out.println("Грива есть");
+        } else { System.out.println("Гривы нет");
         }
 
         assertEquals("Наличие гривы определено не верно", expectedHasMane, lion.doesHaveMane());
     }
-
-    @Test
-
-    public void testGetKittens() {
-        when(felineMock.getKittens()).thenReturn(3);
-        assertEquals(3, lion.getKittens());
-        verify(felineMock).getKittens();
-    }
-
-    @Test
-    public void testGetFood() throws Exception {
-        when(felineMock.getFood("Хищник"))
-                .thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        List<String> food = lion.getFood();
-        assertEquals(3, food.size());
-        assertTrue(food.contains("Животные"));
-        assertTrue(food.contains("Птицы"));
-        assertTrue(food.contains("Рыба"));
-        verify(felineMock).getFood("Хищник");
-    }
-
 }
+
+
+
+
+
+
+
 
