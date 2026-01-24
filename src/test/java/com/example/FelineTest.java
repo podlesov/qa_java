@@ -25,9 +25,7 @@ public class FelineTest {
     public void testEatMeat() throws Exception {
         List<String> food = feline.eatMeat();  // Предполагаем, что eatMeat() вызывает getFood("Хищник")
         assertEquals(3, food.size());
-        assertTrue(food.contains("Животные"));
-        assertTrue(food.contains("Птицы"));
-        assertTrue(food.contains("Рыба"));
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
     }
 
     @Test
